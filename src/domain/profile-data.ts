@@ -314,7 +314,15 @@ const rawProfile: Profile = {
         "Strict pure-component and ViewModel separation validated with Zod 4 and Vitest.",
         "Single typed schema drives Human UI, Agent mode, /llms.txt, and /profile.json.",
       ],
-      stack: ["Next.js 16", "React 19", "TypeScript 7", "Tailwind CSS 4", "Oxlint", "Zod 4", "Vitest"],
+      stack: [
+        "Next.js 16",
+        "React 19",
+        "TypeScript 7",
+        "Tailwind CSS 4",
+        "Oxlint",
+        "Zod 4",
+        "Vitest",
+      ],
       links: [{ label: "Source repo", href: "https://github.com/ijoshwang/ijoshwang.github.io" }],
     },
     {

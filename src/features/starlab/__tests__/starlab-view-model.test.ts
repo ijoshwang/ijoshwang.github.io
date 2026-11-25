@@ -1,9 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { PROFILE } from "@/domain/profile-data";
-import {
-  buildStarLabViewState,
-  clampSplitPercentage,
-} from "@/features/starlab/starlab-view-model";
+import { buildStarLabViewState, clampSplitPercentage } from "@/features/starlab/starlab-view-model";
 
 describe("StarLab showcase view model", () => {
   it("clamps compare curtain percentage safely between 0 and 100", () => {

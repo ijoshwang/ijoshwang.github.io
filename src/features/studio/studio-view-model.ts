@@ -74,17 +74,12 @@ export const COMMAND_ITEMS: readonly CommandItem[] = [
   },
 ];
 
-export function filterCommands(
-  items: readonly CommandItem[],
-  query: string,
-): CommandItem[] {
+export function filterCommands(items: readonly CommandItem[], query: string): CommandItem[] {
   const normalized = query.trim().toLowerCase();
   if (!normalized) return [...items];
 
   return items.filter((item) => {
-    const haystack = [item.label, item.hint, item.group, ...item.keywords]
-      .join(" ")
-      .toLowerCase();
+    const haystack = [item.label, item.hint, item.group, ...item.keywords].join(" ").toLowerCase();
     return haystack.includes(normalized);
   });
 }

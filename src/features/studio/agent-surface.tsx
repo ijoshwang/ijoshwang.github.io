@@ -9,11 +9,7 @@ interface AgentSurfaceProps {
   onReturnToHuman: () => void;
 }
 
-export function AgentSurface({
-  llmsTxt,
-  profileJson,
-  onReturnToHuman,
-}: AgentSurfaceProps) {
+export function AgentSurface({ llmsTxt, profileJson, onReturnToHuman }: AgentSurfaceProps) {
   const [format, setFormat] = useState<"llms" | "json">("llms");
   const [copied, setCopied] = useState(false);
 

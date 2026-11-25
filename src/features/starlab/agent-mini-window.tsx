@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  AlertCircle,
-  CalendarClock,
-  Check,
-  Inbox,
-  MailWarning,
-  MessageSquare,
-} from "lucide-react";
+import { AlertCircle, CalendarClock, Check, Inbox, MailWarning, MessageSquare } from "lucide-react";
 import type { StarLabAgentId } from "@/domain/profile-schema";
 import type { EnrichedAgentSeat } from "./starlab-view-model";
 

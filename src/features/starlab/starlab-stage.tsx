@@ -45,12 +45,7 @@ function LayerIcon({ layer }: { layer: StarLabSharedDocRow["layer"] }) {
   );
 }
 
-export function StarLabStage({
-  title,
-  view,
-  onSelectScenario,
-  onApproveGate,
-}: StarLabStageProps) {
+export function StarLabStage({ title, view, onSelectScenario, onApproveGate }: StarLabStageProps) {
   // Default cleanly at 34% column seam so Left shows Before silo & Right shows After StarLab with zero clipped text
   const [splitPercent, setSplitPercent] = useState(34);
   const [dragging, setDragging] = useState(false);
