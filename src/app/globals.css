@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Clean 3-size body scale below hero (Tailwind v4 font-size utilities) */
+  --text-heading: 1.75rem;
+  --text-heading--line-height: 1.18;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.45;
+}
+
+:root {
+  --ease-craft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   STYLE 2 · VIVID PRODUCT SHOWCASE · CRISP GALLERY LIGHT (DEFAULT)
+   Electric Indigo · Luminous Amber · Crisp Teal + Rich Prismatic Top Wash
+   ========================================================================== */
+[data-theme="light"] {
+  --bg-canvas: #f8f9fc;
+  --surface-elevated: #ffffff;
+  --surface-subtle: #f1f4f9;
+  --surface-hover: #e9eef6;
+  --surface-header: rgba(248, 249, 252, 0.88);
+  --surface-glass: rgba(255, 255, 255, 0.92);
+
+  --ink-primary: #0c1018;
+  --ink-secondary: #3b4558;
+  --ink-muted: #586378;
+
+  --border-subtle: #e2e7f0;
+  --border-strong: #cbd4e3;
+
+  --accent-coding: #4f46e5;
+  --accent-coding-soft: #eef2ff;
+  --accent-coding-border: #c7d2fe;
+
+  --accent-os: #d97706;
+  --accent-os-soft: #fff7e6;
+  --accent-os-border: #fcd34d;
+
+  --accent-shared: #0d9488;
+  --accent-shared-soft: #e6fbf8;
+  --accent-shared-border: #99f6e4;
+
+  --accent-danger: #c81e1e;
+  --accent-danger-soft: #fef2f2;
+  --accent-danger-border: #fecaca;
+
+  --glow-coding: rgba(79, 70, 229, 0.14);
+  --glow-os: rgba(217, 119, 6, 0.11);
+  --glow-shared: rgba(13, 148, 136, 0.12);
+
+  --shadow-mini: 0 6px 18px -10px rgba(15, 23, 42, 0.14), 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-card: 0 20px 48px -24px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  --shadow-stage:
+    0 0 0 1px rgba(15, 23, 42, 0.06),
+    0 28px 68px -28px rgba(15, 23, 42, 0.16),
+    0 10px 24px -14px rgba(79, 70, 229, 0.1);
+  --shadow-dock: 0 14px 36px -12px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(15, 23, 42, 0.08);
+
+  --dot-grid-color: rgba(15, 23, 42, 0.08);
+  --silo-surface: #f2efec;
+}
+
+/* ==========================================================================
+   STYLE 2 · VIVID PRODUCT SHOWCASE · OBSIDIAN DARK (OPTIONAL TOGGLE)
+   ========================================================================== */
+[data-theme="dark"] {
+  --bg-canvas: #080a10;
+  --surface-elevated: #10141f;
+  --surface-subtle: #161c2c;
+  --surface-hover: #1e273d;
+  --surface-header: rgba(8, 10, 16, 0.86);
+  --surface-glass: rgba(16, 20, 31, 0.9);
+
+  --ink-primary: #f2f5fa;
+  --ink-secondary: #bcc7dc;
+  --ink-muted: #8a98b3;
+
+  --border-subtle: #1e2638;
+  --border-strong: #2f3b54;
+
+  --accent-coding: #818cf8;
+  --accent-coding-soft: rgba(129, 140, 248, 0.14);
+  --accent-coding-border: rgba(129, 140, 248, 0.38);
+
+  --accent-os: #fbbf24;
+  --accent-os-soft: rgba(251, 191, 36, 0.13);
+  --accent-os-border: rgba(251, 191, 36, 0.36);
+
+  --accent-shared: #2dd4bf;
+  --accent-shared-soft: rgba(45, 212, 191, 0.13);
+  --accent-shared-border: rgba(45, 212, 191, 0.36);
+
+  --accent-danger: #f87171;
+  --accent-danger-soft: rgba(248, 113, 113, 0.13);
+  --accent-danger-border: rgba(248, 113, 113, 0.35);
+
+  --glow-coding: rgba(129, 140, 248, 0.18);
+  --glow-os: rgba(251, 191, 36, 0.12);
+  --glow-shared: rgba(45, 212, 191, 0.13);
+
+  --shadow-mini: 0 10px 24px -12px rgba(0, 0, 0, 0.65);
+  --shadow-card: 0 24px 60px -24px rgba(0, 0, 0, 0.82);
+  --shadow-stage:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 32px 76px -26px rgba(0, 0, 0, 0.85);
+  --shadow-dock: 0 16px 36px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  --dot-grid-color: rgba(148, 163, 184, 0.14);
+  --silo-surface: #141219;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.craft-color {
+  transition-property: color, background-color, border-color, opacity;
+  transition-duration: 180ms;
+  transition-timing-function: var(--ease-craft);
+}
+
+.craft-interactive {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-duration: 180ms;
+  transition-timing-function: var(--ease-craft);
+}
+
+.curtain-glide {
+  transition-property: clip-path, left;
+  transition-duration: 360ms;
+  transition-timing-function: var(--ease-craft);
+}
+
+.desk-dot-surface {
+  background-image: radial-gradient(var(--dot-grid-color) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Rich full-bleed y=0 gallery top wash (Concept 2's atmospheric color brought to left-aligned layout) */
+.editorial-top-bleed {
+  background:
+    radial-gradient(52% 90% at 14% 0%, var(--glow-coding), transparent 72%),
+    radial-gradient(48% 85% at 54% 4%, var(--glow-shared), transparent 74%),
+    radial-gradient(48% 85% at 88% 0%, var(--glow-os), transparent 72%);
+}
+
+.stage-aura-wash {
+  background:
+    radial-gradient(46% 90% at 16% 0%, var(--glow-coding), transparent 72%),
+    radial-gradient(44% 90% at 50% 0%, var(--glow-os), transparent 72%),
+    radial-gradient(46% 90% at 84% 0%, var(--glow-shared), transparent 72%);
+}
+
+.silo-plane-surface {
+  background-color: var(--silo-surface);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 14px,
+    rgba(120, 113, 108, 0.05) 14px,
+    rgba(120, 113, 108, 0.05) 15px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
