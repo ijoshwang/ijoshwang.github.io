@@ -6,6 +6,7 @@ import { ProfileSchema } from "@/domain/profile-schema";
 import { formatLlmsTxt, formatProfileJson } from "@/domain/protocol-export";
 
 const SRC_ROOT = path.resolve(import.meta.dirname, "../..");
+const PERSONAL_PHONE_PATTERN = /(?:\x2b852[ \t-]?)?\b\d{4}[ \t-]?\d{4}\b/;
 
 function collectSourceFiles(dir: string): string[] {
   const files: string[] = [];
@@ -13,7 +14,7 @@ function collectSourceFiles(dir: string): string[] {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       files.push(...collectSourceFiles(fullPath));
-    } else if (entry.isFile() && !fullPath.endsWith(".test.ts")) {
+    } else if (entry.isFile()) {
       files.push(fullPath);
     }
   }
@@ -26,8 +27,7 @@ describe("profile single source of truth", () => {
     const serialized = formatProfileJson(parsed);
 
     expect(serialized).not.toMatch(/\+\d{2,3}[\s-]?\d{4}/);
-    expect(serialized).not.toMatch(/\b\d{4}[\s-]?\d{4}\b/);
-    expect(serialized).not.toContain("+852");
+    expect(serialized).not.toMatch(PERSONAL_PHONE_PATTERN);
     expect(serialized).not.toContain("—");
     expect(parsed.identity.contact.email).toBe("ijoshwang@gmail.com");
   });
@@ -41,14 +41,21 @@ describe("profile single source of truth", () => {
     expect(llms).toContain("Chat, Chief of Staff");
     expect(llms).toContain("WebPilot");
     expect(llms).toContain("COMET");
-    expect(llms).not.toContain("+852");
+    expect(llms).not.toMatch(PERSONAL_PHONE_PATTERN);
     expect(llms).not.toContain("—");
+  });
+
+  it("detects a synthetic phone number with or without formatting", () => {
+    const groups = ["9999", "9999"];
+    expect(groups.join("")).toMatch(PERSONAL_PHONE_PATTERN);
+    expect(groups.join(" ")).toMatch(PERSONAL_PHONE_PATTERN);
+    expect(groups.join("-")).toMatch(PERSONAL_PHONE_PATTERN);
   });
 
   it("keeps public source files free of phone numbers, private Notion links, and local user paths", () => {
     const bannedPatterns: Array<{ label: string; regex: RegExp }> = [
-      { label: "HK phone prefix", regex: /\+852/ },
-      { label: "personal phone digits", regex: /\b4640[\s-]?1695\b/ },
+      { label: "HK phone prefix", regex: /\x2b852/ },
+      { label: "phone-like digits", regex: PERSONAL_PHONE_PATTERN },
       { label: "private Notion URL", regex: /app\.notion\.com/i },
       { label: "local macOS home path", regex: /\/Users\// },
     ];
