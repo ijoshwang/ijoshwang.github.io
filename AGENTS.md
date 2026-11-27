@@ -10,13 +10,14 @@ Public personal portfolio and StarLab showcase deployed as a static Next.js expo
 ## Content Ownership & Privacy
 
 - `src/domain/profile-data.ts` is the single typed source driving Human UI, Agent mode, `/llms.txt`, and `/profile.json`.
-- Keep career dates, roles, and metrics aligned with upstream `~/workspace/citizen/cv.md` (private CV repo). Omit industry-sensitive bullets (such as `Telegram/TON`) from this public site.
-- Public privacy boundary (enforced by Vitest): never commit phone numbers, `app.notion.com` links, or local filesystem paths under `src/`.
+- `src/domain/site-config.ts` centralizes `SITE_URL`; keep internal routes relative so moving to a custom domain or another host requires no rewrite.
+- Do not duplicate full employment history or private CV details on this public site. Link to LinkedIn and email for a full resume, and keep shared public project facts (such as `WebPilot` metrics) accurate.
+- Public privacy boundary (enforced by Vitest): never commit phone numbers, `app.notion.com` links, local filesystem paths, or internal/retired codenames under `src/`. Use plain functional language (for example, `"Home Repo"` or `"cloud/mobile assistant"` rather than internal names like `Flash`).
 
 ## Branching & Deploy
 
-- Develop on feature branches (`feat/*`) and merge into `master` via PR.
-- `.github/workflows/deploy.yml` runs `pnpm check` on PRs and deploys `./out` to GitHub Pages on pushes to `master` (requires GitHub Pages source set to **GitHub Actions**).
+- Develop on feature branches (`feat/*`) and merge into `main` via PR.
+- `.github/workflows/deploy.yml` runs `pnpm check` on PRs and deploys `./out` to GitHub Pages on pushes to `main` (requires GitHub Pages source set to **GitHub Actions**).
 
 <!-- BEGIN:nextjs-agent-rules -->
 

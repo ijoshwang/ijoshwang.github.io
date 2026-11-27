@@ -1,6 +1,6 @@
 export type ThemeMode = "light" | "dark";
 export type SurfaceMode = "human" | "agent";
-export type ActiveTabId = "overview" | "projects" | "career";
+export type ActiveTabId = "overview" | "projects" | "about";
 
 export interface NavItem {
   id: ActiveTabId;
@@ -11,7 +11,7 @@ export interface NavItem {
 export const PRIMARY_NAV_ITEMS: readonly NavItem[] = [
   { id: "overview", label: "Overview", href: "/" },
   { id: "projects", label: "Projects", href: "/projects/" },
-  { id: "career", label: "Career", href: "/career/" },
+  { id: "about", label: "About", href: "/about/" },
 ];
 
 export interface CommandItem {
@@ -34,15 +34,15 @@ export const COMMAND_ITEMS: readonly CommandItem[] = [
     id: "nav-projects",
     group: "Navigate",
     label: "Go to Projects",
-    hint: "Public launches and StarLab builds",
-    keywords: ["projects", "webpilot", "comet", "snap", "cortex"],
+    hint: "AI products, StarLab, and standalone tools",
+    keywords: ["projects", "webpilot", "starlab", "comet", "snap"],
   },
   {
-    id: "nav-career",
+    id: "nav-about",
     group: "Navigate",
-    label: "Go to Career",
-    hint: "Work history from 2006 to 2026",
-    keywords: ["career", "resume", "cv", "history", "experience"],
+    label: "Go to About",
+    hint: "Background, engineering focus, and contact",
+    keywords: ["about", "background", "bio", "focus", "contact", "cv"],
   },
   {
     id: "toggle-surface",
@@ -88,7 +88,7 @@ export function resolveActiveTabFromPathname(pathname: string | null): ActiveTab
   if (!pathname) return "overview";
   const normalized = pathname.toLowerCase().replace(/\/+$/, "") || "/";
   if (normalized === "/projects" || normalized.startsWith("/projects/")) return "projects";
-  if (normalized === "/career" || normalized.startsWith("/career/")) return "career";
+  if (normalized === "/about" || normalized.startsWith("/about/")) return "about";
   return "overview";
 }
 

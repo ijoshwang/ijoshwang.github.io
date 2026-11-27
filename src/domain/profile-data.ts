@@ -1,8 +1,9 @@
 import { ProfileSchema, type Profile } from "./profile-schema";
+import { SITE_URL } from "./site-config";
 
 const rawProfile: Profile = {
   version: "1.0.0-baseline",
-  updatedAt: "2026-11-25",
+  updatedAt: "2026-11-27",
   identity: {
     name: "Josh Wang",
     fullName: "Huijun (Josh) Wang",
@@ -12,12 +13,12 @@ const rawProfile: Profile = {
     headlineLead: "Building AI products and",
     headlineEmphasis: "shared-memory",
     subheadline:
-      "Josh Wang is an AI product and full-stack engineer in Hong Kong, building StarLab so multiple agents share and maintain one living context.",
+      "Full-stack and AI product engineer in Hong Kong with 20+ years of experience shipping TypeScript, Next.js, and Go systems, from 0-to-1 products like WebPilot to StarLab, a personal agent OS built on one shared context.",
     contact: {
       email: "ijoshwang@gmail.com",
       github: "https://github.com/ijoshwang",
       linkedin: "https://www.linkedin.com/in/ijoshwang/",
-      website: "https://ijoshwang.github.io",
+      website: SITE_URL,
     },
   },
   starlab: {
@@ -260,7 +261,6 @@ const rawProfile: Profile = {
       id: "webpilot",
       name: "WebPilot",
       tagline: "0-to-1 AI search workspace and featured Chrome Extension",
-      status: "public",
       period: "2023 to 2024",
       featuredOnOverview: true,
       metricBadge: "50k users, 1.9k stars",
@@ -282,28 +282,9 @@ const rawProfile: Profile = {
       ],
     },
     {
-      id: "comet",
-      name: "COMET",
-      tagline: "Contextual on-page English lookup across macOS and Chrome",
-      status: "lab",
-      period: "2026",
-      featuredOnOverview: true,
-      metricBadge: "macOS & Chrome lab",
-      summary:
-        "Built an everyday contextual English lookup tool inside StarLab. Diagnosed and repaired a non-deterministic phrase-routing failure via generalized rules and fail-before/pass-after regression proofs.",
-      proofPoints: [
-        "Replaced brittle phrase workarounds with a generalized routing rule fix.",
-        "Verified via automated fail-before and pass-after regression tests.",
-        "Confirmed end-to-end readback across native macOS and Chrome surfaces.",
-      ],
-      stack: ["TypeScript", "Chrome Extension", "macOS", "Local LLM Routing", "Regression Testing"],
-      links: [],
-    },
-    {
       id: "ijoshwang-site",
       name: "ijoshwang.github.io",
       tagline: "Dual Human + Agent portfolio built as an open-source reference",
-      status: "public",
       period: "2026",
       featuredOnOverview: true,
       metricBadge: "Next.js 16, TS 7, /llms.txt",
@@ -328,31 +309,47 @@ const rawProfile: Profile = {
     {
       id: "starlab",
       name: "StarLab",
-      tagline: "Multi-runtime personal Agent OS and shared-context control plane",
-      status: "lab",
-      period: "Mar 2026 to present",
+      tagline:
+        "Personal Agent OS connecting cloud assistants, coding workbenches, and deterministic services",
+      period: "2026 to present",
       featuredOnOverview: false,
-      metricBadge: "Active lab OS",
+      metricBadge: "Personal Agent OS",
       summary:
-        "Personal operating system coordinating Codex, Grok Bot, OpenAI dot, and Hermes through shared Notion control-plane workflows, Speedforce Home Repo rules, explicit authorization tiers, and state recovery.",
+        "Personal operating system uniting a cloud/mobile assistant, interchangeable coding workbenches (Codex and Antigravity), and deterministic background services around one Home Repo, shared Notion workflows, and explicit human approval gates.",
       proofPoints: [
-        "Separates durable shared memory and roles from swappable agent runtimes.",
-        "Enforces Safe Internal, Ask Before External, and Explicit Grant authority gates.",
-        "Powers daily inbox triage, morning briefing pipelines, and project continuity.",
+        "Separates durable shared memory, Home Repo skills, and explicit authority tiers from swappable agent runtimes.",
+        "Powers daily email triage with ledger boundaries, a single-source Markdown-to-PDF CV pipeline, and a Docker-based daily reading edition.",
+        "Enforces deterministic-first automation and weekly read-only system reviews instead of noisy polling agents.",
       ],
-      stack: ["MCP", "Notion Workflows", "Multi-Agent Orchestration", "Speedforce"],
+      stack: ["MCP", "Home Repo", "Agent Skills", "Notion Workflows", "Docker", "launchd"],
+      links: [],
+    },
+    {
+      id: "comet",
+      name: "COMET",
+      tagline: "Contextual on-page English lookup across macOS and Chrome",
+      period: "2026",
+      featuredOnOverview: true,
+      metricBadge: "macOS & Chrome",
+      summary:
+        "Standalone contextual English lookup and translation app for macOS and Chrome. Diagnosed and repaired a non-deterministic phrase-routing bug with generalized routing rules and fail-before/pass-after regression proofs.",
+      proofPoints: [
+        "Replaced brittle phrase workarounds with a generalized routing rule fix.",
+        "Verified via automated fail-before and pass-after regression tests.",
+        "Confirmed end-to-end readback across native macOS and Chrome surfaces.",
+      ],
+      stack: ["TypeScript", "Chrome Extension", "macOS", "Local LLM Routing", "Regression Testing"],
       links: [],
     },
     {
       id: "snap",
       name: "Snap",
       tagline: "Zero-dependency Swift macOS screenshot, annotation, and SSH clipboard tool",
-      status: "lab",
       period: "2026",
       featuredOnOverview: false,
       metricBadge: "Zero-dep Swift",
       summary:
-        "Native macOS 15+ menu-bar capture and annotation app built purely with AppKit, ScreenCaptureKit, and Vision, including one-step OCR handoff to COMET and direct PNG/TIFF clipboard forwarding over SSH.",
+        "Standalone native macOS 15+ menu-bar capture and annotation app built purely with AppKit, ScreenCaptureKit, and Vision, featuring one-step OCR handoff to COMET and direct PNG/TIFF clipboard forwarding over SSH.",
       proofPoints: [
         "Zero third-party dependencies or Xcode project overhead (swiftc and make).",
         "Direct SSH clipboard streaming for pasting visual context into remote coding sessions.",
@@ -361,172 +358,37 @@ const rawProfile: Profile = {
       stack: ["Swift", "AppKit", "ScreenCaptureKit", "Vision OCR", "SSH"],
       links: [],
     },
-    {
-      id: "cortex",
-      name: "Cortex",
-      tagline: "Read-only observability dashboard for personal agents and automations",
-      status: "lab",
-      period: "2026",
-      featuredOnOverview: false,
-      metricBadge: "Observability",
-      summary:
-        "Operational control room surfacing real timestamps, run coverage, and service health across StarLab agents, built around the rule that configuration alone never proves a successful run.",
-      proofPoints: [
-        "Strictly read-only surface separating observation from execution risk.",
-        "Tracks timestamped evidence and freshness across multi-runtime schedules.",
-      ],
-      stack: ["TypeScript", "Next.js", "Observability", "Snapshot Verification"],
-      links: [],
-    },
-    {
-      id: "mercury",
-      name: "Mercury",
-      tagline: "Structured Gmail triage desk with deterministic close boundaries",
-      status: "lab",
-      period: "2026",
-      featuredOnOverview: false,
-      metricBadge: "Email triage",
-      summary:
-        "Automated email intake and morning briefing workflow pairing explicit ledger boundaries with Gmail labeling so important threads stay visible without noisy inbox automation.",
-      proofPoints: [
-        "Deterministic triage rules separating handled mail from open human decisions.",
-        "Cross-runtime workflow handoff verified across scheduled morning runs.",
-      ],
-      stack: ["Gmail CLI", "Notion Ledger", "Structured Triage", "Agent Evals"],
-      links: [],
-    },
-    {
-      id: "citizen",
-      name: "Citizen",
-      tagline: "Single-source Markdown CV and zero-dependency TypeScript PDF builder",
-      status: "lab",
-      period: "2026",
-      featuredOnOverview: false,
-      metricBadge: "Single-source CV",
-      summary:
-        "Authoritative resume pipeline keeping career facts in one version-controlled Markdown file (cv.md) and compiling print-ready PDF output without duplicating truth across documents.",
-      proofPoints: [
-        "Single source of truth synced with public profiles and interview prep.",
-        "Zero-dependency TypeScript build script with deterministic CSS print layout.",
-      ],
-      stack: ["TypeScript", "Markdown", "CSS Print", "Single-Source Pipeline"],
-      links: [],
-    },
-    {
-      id: "stillpoint",
-      name: "Stillpoint",
-      tagline: "Private personal information hub and curated daily reading edition",
-      status: "lab",
-      period: "2026",
-      featuredOnOverview: false,
-      metricBadge: "Daily signal",
-      summary:
-        "Signal-desk reading system distilling curated engineering and AI sources into a calm daily edition rather than algorithmic social feeds.",
-      proofPoints: [
-        "Automated daily reading brief integrated with StarLab schedules.",
-        "Designed for signal density over infinite scrolling.",
-      ],
-      stack: ["TypeScript", "Scheduled Agents", "Information Design"],
-      links: [],
-    },
   ],
-  career: [
-    {
-      id: "independent-2026",
-      company: "Independent (StarLab)",
-      location: "Hong Kong",
-      role: "Independent Full-Stack & AI Engineer",
-      period: "Mar 2026 to present",
-      highlights: [
-        "Architected StarLab, a multi-runtime personal agent OS across Codex, Grok Bot, OpenAI dot, and Hermes with shared Notion workflows, MCP integrations, and explicit authority gates.",
-        "Shipped everyday tools inside the ecosystem including COMET (macOS and Chrome translation), Snap (native Swift capture and SSH clipboard forwarding), Cortex (agent observability), and Mercury (email triage).",
-        "Built spec-driven engineering practices with deep module boundaries, sandboxed async runs, and automated verification gates.",
-      ],
-    },
-    {
-      id: "chaos-theory",
-      company: "Chaos Theory",
-      location: "Hong Kong",
-      role: "Senior Frontend / Full-Stack Engineer",
-      period: "Aug 2024 to Mar 2026",
-      highlights: [
-        "Transitioned into Go (Echo) backend engineering to build an API gateway and analytics service aggregating PostgreSQL, ClickHouse, and Clerk with OpenAPI 3.0 contracts.",
-        "Modernized the web product onto Next.js (App Router), React, TypeScript, Tailwind CSS, shadcn/ui, and TanStack Query.",
-        "Established autonomous AI coding workflows across Go and Next.js repos with iterative loops, Playwright MCP verification, and automated lint, type, and race CI gates.",
-      ],
-    },
-    {
-      id: "webpilot-role",
-      company: "WebPilot",
-      location: "Shenzhen, China",
-      role: "Full-Stack Engineer",
-      period: "Jun 2023 to Feb 2024",
-      highlights: [
-        "Owned 0-to-1 architecture and full-stack delivery of webpilot.ai (Next.js, Node.js), shipping an AI search and BlockNote document workspace in two months.",
-        "Built low-latency SSE streaming UI and Puppeteer HTML-to-PDF export deployed on Docker, Firebase, and Google Cloud.",
-        "Shipped the WebPilot Chrome Extension in one month; featured on Chrome Web Store (4.6 rating, 50,000 users).",
-      ],
-    },
-    {
-      id: "kuaishou",
-      company: "Kuaishou",
-      location: "Beijing, China",
-      role: "Full-Stack Engineering Manager",
-      period: "May 2020 to Mar 2023",
-      highlights: [
-        "Led three cross-functional teams delivering three internal SaaS platforms (questionnaire, e-learning, live-streaming), owning full-stack architecture and UX direction.",
-        "Directed an in-house questionnaire platform cutting form creation from 3 min to 30 sec, saving over ¥100,000/year, and reaching 3M MAU.",
-        "Introduced Nx monorepo and DDD practices, reducing repository count by over 90% and improving development efficiency by roughly 55%.",
-      ],
-    },
-    {
-      id: "horizon-robotics",
-      company: "Horizon Robotics",
-      location: "Beijing, China",
-      role: "Frontend Engineering Lead, Cloud Platform",
-      period: "Feb 2018 to Apr 2020",
-      highlights: [
-        "Built shared frontend infrastructure (CLI tooling, layered architecture, component libraries) across TypeScript, React, Node.js, Storybook, and MongoDB for 30+ engineers.",
-        "Designed a unified interface model, API contract, and data schema standardizing complex Canvas and SVG multi-modal annotation workflows.",
-      ],
-    },
-    {
-      id: "smartisan",
-      company: "Smartisan",
-      location: "Beijing, China",
-      role: "Frontend Engineering Lead, Web Platform",
-      period: "Dec 2013 to Jan 2018",
-      highlights: [
-        "Built and led a 20-person frontend team supporting a high-traffic e-commerce platform serving millions of daily users with sub-2-second load times and a Lighthouse score of 95.",
-        "Modernized the build pipeline with Webpack and Babel, improving build speed by over 70%.",
-      ],
-    },
-    {
-      id: "baidu",
-      company: "Baidu",
-      location: "Beijing, China",
-      role: "Senior Frontend Engineer",
-      period: "Mar 2010 to Jan 2013",
-      highlights: [
-        "Migrated an AdWords-style advertising platform to a Single Page Application, cutting interface complexity by 70%.",
-        "Built reusable UI components for Baidu's internal MVC framework, earning the Quarterly Star award for innovation.",
-      ],
-    },
-    {
-      id: "earlier-startups",
-      company: "Earlier Startups",
-      location: "Beijing, China",
-      role: "Frontend Engineer & Designer",
-      period: "Jul 2006 to Feb 2010",
-      highlights: [
-        "Built a news website from scratch, developing its CMS, SEO architecture, and visual UI components.",
-      ],
-    },
-  ],
-  education: {
-    school: "Beijing University of Posts and Telecommunications",
-    location: "Beijing, China",
-    degree: "Bachelor of Industrial Design",
+  about: {
+    introParagraphs: [
+      "I am a full-stack and AI product engineer based in Hong Kong with over 20 years of experience spanning industrial design, web platforms, and backend systems. My core stack centers on TypeScript, React, Next.js, Node.js, and Go.",
+      "Over the years I have built high-traffic consumer web platforms, multi-modal annotation and cloud tooling, internal SaaS suites, and 0-to-1 AI products. Working across design, frontend architecture, and backend services taught me to optimize for clarity, speed, and durable system boundaries.",
+      "Today I focus on AI-native products and shared-memory agent systems, pairing strong product judgment with deterministic automation and inspectable engineering craft.",
+    ],
+    engineeringFocus: [
+      {
+        title: "Product and UX judgment with systems depth",
+        description:
+          "Pairing interface ergonomics with sound backend architecture so products feel effortless while staying maintainable under load.",
+      },
+      {
+        title: "Single-source-of-truth design",
+        description:
+          "Deriving UI, documentation, and machine-readable surfaces from one canonical model to eliminate drift.",
+      },
+      {
+        title: "Automated verification gates",
+        description:
+          "Using strict typing, linters, regression proofs, and CI checks to keep rapid iteration safe and repeatable.",
+      },
+      {
+        title: "Pragmatic AI-assisted workflows",
+        description:
+          "Combining deterministic background services, shared context, and explicit human approval gates instead of brittle autonomous loops.",
+      },
+    ],
+    workHistoryNote:
+      "For full work history or a copy of my CV, connect on LinkedIn or reach out by email.",
   },
 };
 

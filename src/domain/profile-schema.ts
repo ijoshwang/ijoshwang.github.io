@@ -58,14 +58,10 @@ export const StarLabScenarioSchema = z.object({
 });
 export type StarLabScenario = z.infer<typeof StarLabScenarioSchema>;
 
-export const ProjectStatusSchema = z.enum(["public", "lab", "purified"]);
-export type ProjectStatus = z.infer<typeof ProjectStatusSchema>;
-
 export const ProjectItemSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   tagline: z.string().min(1),
-  status: ProjectStatusSchema,
   period: z.string().min(1),
   featuredOnOverview: z.boolean(),
   metricBadge: z.string().min(1),
@@ -81,15 +77,18 @@ export const ProjectItemSchema = z.object({
 });
 export type ProjectItem = z.infer<typeof ProjectItemSchema>;
 
-export const CareerEntrySchema = z.object({
-  id: z.string().min(1),
-  company: z.string().min(1),
-  location: z.string().min(1),
-  role: z.string().min(1),
-  period: z.string().min(1),
-  highlights: z.array(z.string().min(1)).min(1),
+export const AboutFocusPointSchema = z.object({
+  title: z.string().min(1),
+  description: z.string().min(1),
 });
-export type CareerEntry = z.infer<typeof CareerEntrySchema>;
+export type AboutFocusPoint = z.infer<typeof AboutFocusPointSchema>;
+
+export const AboutSectionSchema = z.object({
+  introParagraphs: z.array(z.string().min(1)).min(2),
+  engineeringFocus: z.array(AboutFocusPointSchema).min(3),
+  workHistoryNote: z.string().min(1),
+});
+export type AboutSection = z.infer<typeof AboutSectionSchema>;
 
 export const ProfileSchema = z.object({
   version: z.string().min(1),
@@ -119,12 +118,7 @@ export const ProfileSchema = z.object({
     scenarios: z.array(StarLabScenarioSchema).min(2),
   }),
   projects: z.array(ProjectItemSchema).min(1),
-  career: z.array(CareerEntrySchema).min(1),
-  education: z.object({
-    school: z.string().min(1),
-    location: z.string().min(1),
-    degree: z.string().min(1),
-  }),
+  about: AboutSectionSchema,
 });
 
 export type Profile = z.infer<typeof ProfileSchema>;

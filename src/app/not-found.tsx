@@ -9,7 +9,7 @@ export default function NotFound() {
       </h1>
       <p className="mt-4 text-body text-[var(--ink-secondary)]">
         The route you requested does not exist on this site. Jump back to Overview, Projects, or
-        Career.
+        About.
       </p>
       <div className="mt-7">
         <Link

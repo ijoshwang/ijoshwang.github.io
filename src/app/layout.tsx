@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { PROFILE } from "@/domain/profile-data";
 import { formatLlmsTxt, formatProfileJson } from "@/domain/protocol-export";
+import { SITE_URL } from "@/domain/site-config";
 import { SiteShell } from "@/features/studio/site-shell";
 import "./globals.css";
 
@@ -18,18 +19,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ijoshwang.github.io"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Josh Wang | AI-Native Product & Systems Engineer",
     template: "%s | Josh Wang",
   },
   description:
-    "AI product and full-stack engineer in Hong Kong building StarLab so multiple agents share and maintain one living context.",
+    "Full-stack and AI product engineer in Hong Kong with 20+ years of experience shipping TypeScript, Next.js, and Go systems, from 0-to-1 products like WebPilot to StarLab.",
   openGraph: {
     title: "Josh Wang | AI-Native Product & Systems Engineer",
     description:
-      "Building AI products and shared-memory agent systems. Creator of StarLab and 0-to-1 engineer behind WebPilot.",
-    url: "https://ijoshwang.github.io",
+      "Full-stack and AI product engineer in Hong Kong with 20+ years of experience shipping TypeScript, Next.js, and Go systems, from 0-to-1 products like WebPilot to StarLab, a personal agent OS built on one shared context.",
+    url: SITE_URL,
     siteName: "Josh Wang",
     type: "website",
   },

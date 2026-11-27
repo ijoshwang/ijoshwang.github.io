@@ -5,7 +5,7 @@ import { ProjectsView } from "@/features/studio/projects-view";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Public AI product launches including WebPilot alongside sanitized personal lab systems built inside StarLab.",
+    "AI products, personal agent systems, and standalone engineering tools designed and built by Josh Wang.",
   alternates: {
     canonical: "/projects/",
   },

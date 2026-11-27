@@ -1,7 +1,7 @@
 import type { Profile } from "./profile-schema";
 
 export function formatLlmsTxt(profile: Profile): string {
-  const { identity, starlab, projects, career, education } = profile;
+  const { identity, starlab, projects, about } = profile;
 
   const lines: string[] = [
     `# ${identity.fullName} | ${identity.role}`,
@@ -33,26 +33,23 @@ export function formatLlmsTxt(profile: Profile): string {
       (scenario) => `- **${scenario.shortLabel}**: ${scenario.solutionSummary}`,
     ),
     "",
-    "## Projects & Lab Builds",
+    "## Selected Projects",
     "",
     ...projects.map((project) => {
       const linkSuffix =
         project.links.length > 0
           ? ` | ${project.links.map((l) => `[${l.label}](${l.href})`).join(", ")}`
           : "";
-      return `- **${project.name}** [${project.status}, ${project.period}]: ${project.tagline}. ${project.summary}${linkSuffix}`;
+      return `- **${project.name}** (${project.metricBadge}, ${project.period}): ${project.tagline}. ${project.summary}${linkSuffix}`;
     }),
     "",
-    "## Career History",
+    "## About",
     "",
-    ...career.map(
-      (entry) =>
-        `- **${entry.company}**, ${entry.role} (${entry.period}, ${entry.location}): ${entry.highlights[0]}`,
-    ),
+    ...about.introParagraphs.flatMap((paragraph) => [paragraph, ""]),
+    "### Engineering Focus",
+    ...about.engineeringFocus.map((point) => `- **${point.title}**: ${point.description}`),
     "",
-    "## Education",
-    "",
-    `- ${education.school} (${education.location}): ${education.degree}`,
+    `${about.workHistoryNote} LinkedIn: ${identity.contact.linkedin} | Email: ${identity.contact.email}`,
     "",
   ];
 

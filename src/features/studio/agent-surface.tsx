@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Copy, FileCode2, FileText } from "lucide-react";
+import { SITE_URL } from "@/domain/site-config";
 
 interface AgentSurfaceProps {
   llmsTxt: string;
@@ -87,7 +88,8 @@ export function AgentSurface({ llmsTxt, profileJson, onReturnToHuman }: AgentSur
 
           <div className="flex items-center gap-4">
             <code className="hidden font-mono text-sm text-[var(--ink-muted)] md:inline">
-              curl -s https://ijoshwang.github.io{activeEndpoint}
+              curl -s {SITE_URL}
+              {activeEndpoint}
             </code>
             <button
               type="button"

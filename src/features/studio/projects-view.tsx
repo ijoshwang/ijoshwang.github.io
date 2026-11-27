@@ -6,49 +6,28 @@ interface ProjectsViewProps {
 }
 
 export function ProjectsView({ projects }: ProjectsViewProps) {
-  const publicProjects = projects.filter((project) => project.status === "public");
-  const labProjects = projects.filter((project) => project.status === "lab");
-
   return (
-    <section aria-label="Projects and independent builds">
+    <section aria-label="Projects">
       <div className="max-w-[60ch] pb-10">
         <h1 className="font-display text-[clamp(2.35rem,4.5vw,3.6rem)] leading-[1.04] font-medium tracking-[-0.038em] text-[var(--ink-primary)]">
-          Projects and lab builds
+          Projects
         </h1>
         <p className="mt-4 text-body text-[var(--ink-secondary)]">
-          Public commercial launches alongside sanitized architectures built inside StarLab. Former
-          employer internal systems stay strictly in Career.
+          AI products, personal agent systems, and standalone engineering tools I have designed and
+          built.
         </p>
       </div>
 
-      <div className="border-t border-[var(--border-subtle)] pt-10">
-        <h2 className="font-display text-heading font-semibold tracking-[-0.03em] text-[var(--ink-primary)]">
-          Public launches
-        </h2>
-        <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2">
-          {publicProjects.map((project) => (
-            <ProjectEntry key={project.id} project={project} />
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-16 border-t border-[var(--border-subtle)] pt-10">
-        <h2 className="font-display text-heading font-semibold tracking-[-0.03em] text-[var(--ink-primary)]">
-          Built inside StarLab
-        </h2>
-        <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2">
-          {labProjects.map((project) => (
-            <ProjectEntry key={project.id} project={project} />
-          ))}
-        </div>
+      <div className="grid grid-cols-1 gap-x-10 gap-y-8 border-t border-[var(--border-subtle)] pt-10 md:grid-cols-2">
+        {projects.map((project) => (
+          <ProjectEntry key={project.id} project={project} />
+        ))}
       </div>
     </section>
   );
 }
 
 function ProjectEntry({ project }: { project: ProjectItem }) {
-  const isPublic = project.status === "public";
-
   return (
     <article
       id={project.id}
@@ -56,9 +35,9 @@ function ProjectEntry({ project }: { project: ProjectItem }) {
     >
       <div>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h3 className="text-body font-semibold text-[var(--ink-primary)]">{project.name}</h3>
+          <h2 className="text-body font-semibold text-[var(--ink-primary)]">{project.name}</h2>
           <span className="text-sm text-[var(--ink-muted)]">
-            {isPublic ? "Public launch" : "Private lab"} · {project.period}
+            {project.metricBadge} · {project.period}
           </span>
         </div>
 
@@ -69,13 +48,11 @@ function ProjectEntry({ project }: { project: ProjectItem }) {
         <p className="mt-3 max-w-[60ch] text-body text-[var(--ink-secondary)]">{project.summary}</p>
 
         <ul className="mt-4 space-y-1.5 text-body text-[var(--ink-secondary)]">
-          {project.proofPoints.slice(0, 2).map((point) => (
+          {project.proofPoints.map((point) => (
             <li key={point} className="flex items-start gap-2.5">
               <span
-                className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full"
-                style={{
-                  backgroundColor: isPublic ? "var(--accent-shared)" : "var(--accent-os)",
-                }}
+                aria-hidden="true"
+                className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-coding)]"
               />
               <span>{point}</span>
             </li>

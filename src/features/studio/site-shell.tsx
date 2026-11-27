@@ -146,9 +146,9 @@ export function SiteShell({ profile, llmsTxt, profileJson, children }: SiteShell
           setSurface("human");
           router.push("/projects/");
           break;
-        case "nav-career":
+        case "nav-about":
           setSurface("human");
-          router.push("/career/");
+          router.push("/about/");
           break;
         case "toggle-surface":
           setSurface((prev) => (prev === "human" ? "agent" : "human"));
