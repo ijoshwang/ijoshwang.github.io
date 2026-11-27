@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["eslint", "typescript", "react", "nextjs", "unicorn"],
+  "ignorePatterns": [".next/**", "out/**", "node_modules/**", "next-env.d.ts"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "rules": {
+    "typescript/no-explicit-any": "error",
+    "typescript/no-floating-promises": "error",
+    "react/react-in-jsx-scope": "off",
+    "nextjs/no-img-element": "off"
+  }
+}
